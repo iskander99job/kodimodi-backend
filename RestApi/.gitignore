@@ -1,0 +1,21 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+artifacts/
+TestResults/
+
+# Rider and Visual Studio
+.idea/
+.vs/
+*.sln.iml
+*.suo
+*.user
+*.userprefs
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# macOS
+.DS_Store

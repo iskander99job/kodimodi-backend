@@ -1,0 +1,44 @@
+# ===== .NET / C# =====
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# ===== IDE =====
+# JetBrains Rider / IntelliJ
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+*.vsidx
+*.vscode/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== NuGet =====
+packages/
+*.nupkg
+!packages.config
+
+# ===== Build results =====
+[Dd]ebug/
+[Rr]elease/
+[Dd]ebugPublic/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Oo]ut/
+
+.env
