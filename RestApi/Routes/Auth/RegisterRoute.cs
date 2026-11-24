@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
@@ -27,13 +26,12 @@ public static class RegisterRoute
         var nickname = request.Nickname;
         var password = request.Password;
 
-        if (nickname is null ||
-            !Regex.IsMatch(nickname, @"\A[A-Za-z0-9_]{4,16}\z"))
+        if (!CredentialValidation.IsNicknameValid(nickname))
         {
             return Results.BadRequest(new { error = ErrorCodes.InvalidNickname });
         }
 
-        if (password is null || password.Length is < 6 or > 30)
+        if (!CredentialValidation.IsPasswordValid(password))
         {
             return Results.BadRequest(new { error = ErrorCodes.InvalidPassword });
         }

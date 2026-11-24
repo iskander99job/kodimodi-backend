@@ -25,8 +25,8 @@ public static class LoginRoute
         var nickname = request.Nickname;
         var password = request.Password;
 
-        if (nickname is null || nickname.Length is < 4 or > 16 ||
-            password is null || password.Length is < 6 or > 30)
+        if (!CredentialValidation.IsNicknameValid(nickname) ||
+            !CredentialValidation.IsPasswordValid(password))
         {
             return InvalidCredentials();
         }
