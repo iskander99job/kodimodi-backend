@@ -4,8 +4,24 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-if (File.Exists(".env"))
-    DotNetEnv.Env.NoClobber().Load(".env");
+var envPath = Path.GetFullPath(".env");
+if (!File.Exists(envPath))
+{
+    // Rider can launch the executable from bin/Debug/net10.0.
+    for (var directory = new DirectoryInfo(AppContext.BaseDirectory);
+         directory != null;
+         directory = directory.Parent)
+    {
+        if (!File.Exists(Path.Combine(directory.FullName, "GameServer.csproj")))
+            continue;
+
+        envPath = Path.Combine(directory.FullName, ".env");
+        break;
+    }
+}
+
+if (File.Exists(envPath))
+    DotNetEnv.Env.NoClobber().Load(envPath);
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://0.0.0.0:8080");
