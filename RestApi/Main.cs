@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using RestApi.Data;
 using RestApi.Models;
-using RestApi.Routes;
 using RestApi.Routes.Arsenal;
 using RestApi.Routes.Auth;
 using RestApi.Routes.Profile;
@@ -26,6 +25,7 @@ builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddSingleton(new JwtTokenService(builder.Configuration));
 
 var jwt = builder.Configuration.GetSection("Jwt");
+
 var encodedKey = jwt["SigningKey"]
     ?? throw new InvalidOperationException("Missing Jwt__SigningKey.");
 

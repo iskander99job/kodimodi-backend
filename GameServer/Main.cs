@@ -19,6 +19,7 @@ builder.Services.AddCors(options =>
 });
 
 var restApiUrl = builder.Configuration["RestApi:BaseUrl"];
+Console.WriteLine($"RestApiUrl: {restApiUrl}");
 builder.Services.AddHttpClient<MatchLoadout>(client =>
 {
     if (!string.IsNullOrWhiteSpace(restApiUrl))
